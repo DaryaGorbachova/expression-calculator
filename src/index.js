@@ -8,6 +8,8 @@ function expressionCalculator(expr) {
 	let result = 0;
 	let char = '';	
 	expr = expr + '?';
+	let sum = 0;
+	let mul = 0;
 
 		
 	for (let i = 0; i < expr.length; i++) {
@@ -16,10 +18,12 @@ function expressionCalculator(expr) {
 			char += expr[i];
 		} else if (expr[i] === '?' && expr[i - 1] !== ' ') {
 			array.push(parseInt(char))
-		} else if (isNaN(parseInt(expr[i])) === true && expr[i] !== ' ') {
+		} else if (isNaN(parseInt(expr[i])) === true && expr[i] !== ' ' && char !== '') {
 			char = parseInt(char);
 			array.push(char);	
 			char = '';
+			if (expr[i] !== '?') array.push(expr[i]);
+		} else if (isNaN(parseInt(expr[i])) === true && expr[i] !== ' ' && char === '') {
 			if (expr[i] !== '?') array.push(expr[i]);
 		}
 	}
@@ -45,6 +49,8 @@ for (let i = 0; i < array.length - 1; i++) {
 	
 	return result;
 }
+
+expressionCalculator(' ( 6 - 3 ) * 8')
 
 module.exports = {
     expressionCalculator
