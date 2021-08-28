@@ -38,7 +38,7 @@ for (let i = 0; i < array.length - 1; i++) {
 		result *= array[i + 1];
 	}
 	else if (array[i] === '/') {
-
+		if (array[i + 1] === 0) throw new Error("TypeError: Division by zero.");
 		result /= array[i + 1];
 }
 }
@@ -50,7 +50,6 @@ for (let i = 0; i < array.length - 1; i++) {
 	return result;
 }
 
-expressionCalculator(' ( 6 - 3 ) * 8')
 
 module.exports = {
     expressionCalculator
